@@ -14,7 +14,7 @@ Reads your landing page the way a first-time visitor would and tells you what ge
 - Risk: anything in the sandbox can leave over the open network. Do not paste secrets, private exports or customer data into a session.
 
 ## First-run setup
-1. This package has no schedule. Run it when you change your landing page. Set a session budget in Console when you start a run; no run cost has been measured yet.
+1. This package has no schedule. Run it when you change your landing page. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
 2. Run `ant apply --dry-run .` and inspect the resource plan.
 3. Install the agent, environment, skill and memory store:
 

@@ -15,7 +15,7 @@ Reads the last seven days of commits and merged pull requests from your public G
 - It never posts. You copy the drafts you like into X or Bluesky yourself.
 
 ## First-run setup
-1. This package has no schedule. Run it after you ship, usually once a week. Set a session budget in Console when you start a run; no run cost has been measured yet.
+1. This package has no schedule. Run it after you ship, usually once a week. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
 2. Run `ant apply --dry-run .` and inspect the resource plan.
 3. Install the agent, environment, skill and memory store:
 
