@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Competitor SEO Gap Scout memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Competitor SEO Gap Scout. Keep snapshots labeled with source and date.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
+name: internal-link-advisor-cloud
+description: Default minimal cloud sandbox for Internal Link Advisor. No third-party
+  credentials or extra packages.
+config:
+  type: cloud
+  networking:
+    type: limited
+    allow_package_managers: false

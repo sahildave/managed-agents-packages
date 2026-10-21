@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Personal Learning Coach memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Personal Learning Coach. Keep snapshots labeled with source and date.
