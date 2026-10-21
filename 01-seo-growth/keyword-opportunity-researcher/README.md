@@ -14,7 +14,7 @@ Looks at what your buyers search for, reads the pages that rank, and gives you a
 - Risk: anything in the sandbox can leave over the open network. Do not paste secrets, private exports or customer data into a session.
 
 ## First-run setup
-1. This package has no schedule. Run it when you plan new pages or content. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
+1. This package has no schedule. Run it when you plan new pages or content. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. One measured run cost $1.17 ([example run](https://github.com/sahildave/managed-agents-packages/blob/main/examples/keyword-opportunity-researcher-2026-10-21.md)).
 2. Run `ant apply --dry-run .` and inspect the resource plan.
 3. Install the agent, environment, skill and memory store:
 
@@ -26,6 +26,7 @@ Looks at what your buyers search for, reads the pages that rank, and gives you a
 
    Your inputs
    - Product: <one sentence on what you sell and to whom>
+   - Audience: <who buys or uses it, one sentence>
    - Site URL: <your-site-url>
    - Country and language: <e.g. US English>
    - Topics you already cover: <comma-separated, or none>
@@ -37,4 +38,4 @@ Looks at what your buyers search for, reads the pages that rank, and gives you a
 4. In a session with the memory store attached, ask it to write a dated note to memory. Start a second session with the store attached and check it can read that note.
 
 ## Status
-Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.** No run cost has been measured.
+Generated files passed local YAML/frontmatter and reference checks. Ran once live on 2026-10-21 with real inputs: see [the example run](https://github.com/sahildave/managed-agents-packages/blob/main/examples/keyword-opportunity-researcher-2026-10-21.md) (list cost $1.17).

@@ -17,7 +17,7 @@ Checks your public site every week with curl (robots.txt, sitemap, status codes,
 ## First-run setup
 1. Set `schedule.timezone` in `deployments/scheduled.md` to your IANA timezone (for example `Europe/London` or `America/New_York`). It defaults to `UTC`, so the run happens at 8:00 UTC until you change it.
 2. Fill in the "Your inputs" block in `deployments/scheduled.md`. Replace every `<placeholder>`. While any placeholder is left, each run returns only a setup checklist.
-3. Check the budget in `deployments/scheduled.md`: each run stops at $1.00 (`budget.max_list_cost.amount` is in US cents). No run cost has been measured yet.
+3. Check the budget in `deployments/scheduled.md`: each run stops at $1.00 (`budget.max_list_cost.amount` is in US cents). One measured run cost $0.31 ([example run](https://github.com/sahildave/managed-agents-packages/blob/main/examples/site-seo-watch-2026-10-21.md)).
 4. Run `ant apply --dry-run .` and inspect the resource plan.
 5. To install the agent, environment, skill and memory **without scheduling**, run:
 
@@ -33,4 +33,4 @@ Checks your public site every week with curl (robots.txt, sitemap, status codes,
 4. In a deployment-created session, ask it to write a dated note to memory. Launch a second session and check it can read that note.
 
 ## Status
-Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.** No run cost has been measured.
+Generated files passed local YAML/frontmatter and reference checks. Ran once live on 2026-10-21 with real inputs: see [the example run](https://github.com/sahildave/managed-agents-packages/blob/main/examples/site-seo-watch-2026-10-21.md) (list cost $0.31). Not tested as a scheduled deployment.
