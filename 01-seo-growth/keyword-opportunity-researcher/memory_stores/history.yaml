@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Keyword Opportunity Researcher memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Keyword Opportunity Researcher. Keep snapshots labeled with source and date.

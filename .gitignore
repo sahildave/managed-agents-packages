@@ -1,0 +1,4 @@
+.DS_Store
+claude-lock.json
+.env
+*.log

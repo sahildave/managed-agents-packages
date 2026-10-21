@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Ship Log to Posts memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Ship Log to Posts. Keep snapshots labeled with source and date.

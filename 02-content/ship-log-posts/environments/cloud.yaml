@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
+name: ship-log-posts-cloud
+description: Cloud sandbox that reaches only GitHub and package registries, so the agent can clone a public repository. Web search and web fetch are disabled in the agent.
+config:
+  type: cloud
+  networking:
+    type: limited
+    allow_package_managers: true

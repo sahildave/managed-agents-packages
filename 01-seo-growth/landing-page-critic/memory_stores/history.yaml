@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Landing Page Conversion Critic memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Landing Page Conversion Critic. Keep snapshots labeled with source and date.
