@@ -14,7 +14,7 @@ Reads your landing page the way a first-time visitor would and tells you what ge
 - Risk: anything in the sandbox can leave over the open network. Do not paste secrets, private exports or customer data into a session.
 
 ## First-run setup
-1. This package has no schedule. Run it when you change your landing page. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
+1. This package has no schedule. Run it when you change your landing page. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. One measured run cost $0.18 ([example run](https://github.com/sahildave/managed-agents-packages/blob/main/examples/landing-page-critic-2026-10-21.md)).
 2. Run `ant apply --dry-run .` and inspect the resource plan.
 3. Install the agent, environment, skill and memory store:
 
@@ -36,4 +36,4 @@ Reads your landing page the way a first-time visitor would and tells you what ge
 4. In a deployment-created session, ask it to write a dated note to memory. Launch a second session and check it can read that note.
 
 ## Status
-Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.** No run cost has been measured.
+Generated files passed local YAML/frontmatter and reference checks. Ran once live on 2026-10-21 with real inputs: see [the example run](https://github.com/sahildave/managed-agents-packages/blob/main/examples/landing-page-critic-2026-10-21.md) (list cost $0.18).
