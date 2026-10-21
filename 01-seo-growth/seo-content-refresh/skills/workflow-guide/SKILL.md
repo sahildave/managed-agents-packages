@@ -1,21 +1,48 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for SEO Content Refresh Planner.
+description: Refresh-list template and evidence rules for SEO Content Refresh Planner.
 ---
 
-# SEO Content Refresh Planner workflow guide
+# Article refresh list
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Check factual staleness, broken references, missing user questions, and improvements; never infer traffic declines without analytics.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Prioritized refresh backlog with proof, effort and expected benefit hypothesis.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes what to check, what you can claim and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## What to check in each article
+1. Dated facts: prices, plan limits, version numbers, release dates, "as of" statements, statistics with a year.
+2. Product steps: menu names, settings and screens the article tells the reader to use.
+3. Outbound links: every link in the body.
+4. Missing questions: what the pages ranking now for the article's main question cover that the article does not.
+5. The article's own date: a "last updated" line or a year in the title.
+
+## Evidence rules
+- A fact is out of date only when a current primary source says otherwise: the vendor's pricing page, docs, changelog or the original study. Quote both sides and give the source URL and fetch date.
+- If you could not find a current source, say "could not confirm" instead of calling the fact wrong.
+- A link is dead only when the fetch fails or returns an error page. A blocked fetch or a login wall is "could not check". A link that now lands on an unrelated page (for example a homepage) is "redirected".
+- You have no analytics or Search Console. Never claim the article lost traffic or rankings, or that a fix will win any back.
+- Effort: small (a word or number), medium (a paragraph or a new section), large (a rewrite). Base it on the change, not a guess at hours.
+
+## Report layout
+```text
+# Refresh list, <yyyy-mm-dd>
+
+## <article title> (<URL>)
+Last updated: <date from the page, the user, or "unknown">
+
+1. <fix in one line> (<small, medium, large>)
+   - Now says: "<quote>"
+   - Evidence: <source URL>, fetched <yyyy-mm-dd>: "<quote>"
+   - Change to: <suggested text or section>
+
+### Links
+- <link>: <dead, redirected to URL, could not check>
+
+### Questions it does not answer
+- <question>: covered by <ranking URL>
+
+## Could not confirm
+- <claim>: <why>
+
+## Next actions
+1. <action>
+```
+Rank fixes within each article by how wrong or incomplete the article is today, then by effort. Save each article's fix list to memory with the date.

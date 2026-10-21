@@ -1,21 +1,44 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Personal Learning Coach.
+description: Study-plan rules and weekly plan template for Personal Learning Coach.
 ---
 
-# Personal Learning Coach workflow guide
+# Weekly study plan
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Use memory to track completed exercises and weak areas; generate retrieval practice and a manageable learning sprint.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: One-week syllabus, practice tasks and checkpoint questions.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to mark answers, build the week and the plan layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Marking last week
+- Mark each answer against the question saved in memory: right, partly right or wrong, with one line on what was missing.
+- If memory holds no questions, or the user wrote "none", say "no answers to mark" and skip to planning.
+- A weak area is a question marked partly right or wrong. Keep it on the list until the user gets a question on it right twice.
+
+## Building the week
+- Sessions of 25 to 60 minutes that add up to no more than the weekly hours.
+- Each session: one concept, one practice task that makes the user produce something (write the query, solve the problem, explain it in three sentences), and the part of the user's materials to use, by chapter or section if they named one.
+- Order: last week's weak areas first, then new material, each step building on the one before.
+- Stay at the stated level. If the goal needs something the user has not covered, say so and add it as its own session.
+- Name only materials the user listed. If they need something their materials do not cover, describe what to look for; do not invent a title or a link.
+
+## Checkpoint questions
+- Five to eight questions. At least two on earlier weak areas when there are any.
+- Each one checkable from a short answer. Save the questions and the expected answer to memory, dated.
+
+## Plan layout
+```text
+# <topic>, week of <yyyy-mm-dd>
+Level: <level>. Hours: <n>. Goal: <goal>.
+
+## Last week's answers
+- Q<n>: right / partly / wrong. <what was missing>
+
+## Sessions
+### Session 1 (<min> min): <concept>
+- Read: <part of the user's materials>
+- Practice: <task>
+
+## Checkpoint questions for next run
+1. <question>
+
+## Weak areas carried
+- <area>: wrong <n> times, right <n> times
+```

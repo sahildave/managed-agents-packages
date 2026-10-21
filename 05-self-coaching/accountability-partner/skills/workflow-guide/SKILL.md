@@ -1,21 +1,48 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Weekly Accountability Partner.
+description: Scorecard rules, memory layout and report template for Weekly Accountability Partner.
 ---
 
-# Weekly Accountability Partner workflow guide
+# Weekly accountability check-in
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Read saved commitments, compare reported progress, detect recurring obstacles without diagnosing; ask specific supportive questions.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Commitment scorecard (unknown if unreported), lessons and next commitments.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to score commitments, what to keep in memory and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Scoring
+- Done: the user says it is finished.
+- Partly done: the user names some progress but not the finish.
+- Not done: the user says it did not happen.
+- Unknown: the user did not mention it. Never score silence as not done.
+- Score only from the user's words in this session. Quote the phrase you scored from.
+
+## Repeating obstacles
+- An obstacle repeats when the user names the same cause in this run and in at least one earlier dated snapshot. Cite the snapshot dates.
+- Without a previous snapshot, list this week's obstacles and say there is no baseline yet.
+- Name the obstacle in the user's words. Do not guess a cause the user did not give.
+
+## Next commitments
+- At most three. Each one is a single action with a finish line the user can check next week.
+- If fewer than half of this week's commitments were done, propose fewer or smaller ones, not more.
+
+## Memory
+- `profile.md`: the latest inputs and the date they changed.
+- `snapshots/<yyyy-mm-dd>.md`: commitments, scores, obstacles and next commitments for that run. Append; never rewrite an old snapshot.
+- Leave out passwords, money details, health details and anything the user marks private.
+
+## Report layout
+```text
+# Check-in, week ending <yyyy-mm-dd>
+
+## Scorecard
+| Commitment | Score | From your update |
+| --- | --- | --- |
+| <commitment> | done / partly done / not done / unknown | "<quote>" |
+
+## Obstacles
+- <obstacle>: this week; also on <snapshot dates>, or "first time"
+
+## Next week
+1. <commitment>: done when <check>
+
+## Memory
+- <what was written, or "no memory store attached">
+```

@@ -1,21 +1,48 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Exercise Consistency Planner.
+description: Review rules, plan sizing and plan template for Exercise Consistency Planner.
 ---
 
-# Exercise Consistency Planner workflow guide
+# Exercise consistency plan
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Review reported workouts, suggest manageable consistency goals, avoid clinical or injury-specific guidance.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Weekly activity plan and adherence review.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to review the week, how big next week's plan can be, what to keep in memory and the plan layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Reviewing last week
+- Count a session as done only when the user says it happened. A planned session the user does not mention is "not reported", not missed.
+- With no previous snapshot, there is no plan to compare against: list what the user did and say this is the baseline week.
+- Quote what the user says helped or got in the way. Do not guess a reason.
+
+## Sizing next week
+- Start from the number of sessions actually done last week.
+- If the user did all planned sessions, add at most one. If they did fewer than half, plan the same number they did, or one fewer, and keep the same days that worked.
+- Use only activities and durations from the user's routine. Do not raise duration or intensity; the user decides that.
+- Put each session in a free slot the user gave. If there are not enough slots, plan fewer sessions and say so.
+- Leave at least one day with no session unless the user's routine says otherwise.
+
+## Stop rules
+- Pain, injury, illness, pregnancy or a medical condition: do not plan around it. Tell the user to check with a doctor or qualified professional, and plan only rest or sessions they say are cleared.
+- Never give medical, nutrition or training advice.
+
+## Memory
+- `profile.md`: routine, usual free slots and the date they changed.
+- `snapshots/<yyyy-mm-dd>.md`: the plan given, and later the sessions the user reported. No health details.
+
+## Plan layout
+```text
+# Exercise plan, week of <yyyy-mm-dd>
+
+## Last week
+| Day | Planned | Done | What you said |
+| --- | --- | --- | --- |
+
+Done <n> of <n> planned. <one line on what helped or got in the way, in your words>
+
+## Next week
+| Day | Time | Session | Duration |
+| --- | --- | --- | --- |
+
+<n> sessions, <why this number>.
+
+## Memory
+- <what was written, or "no memory store attached">
+```

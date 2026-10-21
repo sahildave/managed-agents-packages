@@ -1,21 +1,36 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Project Momentum Tracker.
+description: Status rules and momentum-table template for Project Momentum Tracker.
 ---
 
-# Project Momentum Tracker workflow guide
+# Project momentum
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Compare updates with past notes; identify stale items and causes only with evidence; formulate next actions.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Momentum dashboard and one unblock action per project.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to judge each project and the table layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Status rules
+- Moving: the update names a finished step toward the next milestone.
+- Slowing: the update names work but no finished step, or the milestone date has moved.
+- Stalled: the update says nothing moved, and the last snapshot in memory said the same. Without a snapshot, one "nothing" is "slowing (no baseline)".
+- Judge only from the user's update and memory. If an update is unclear, mark the project "unclear" and ask one question.
+- Blocker: name one only if the user's update states it. Otherwise write "not stated".
+- Next action: one physical step under two hours that the user can start today ("email the designer the three logo files"), not a goal ("finish branding").
+- If a milestone date has passed, say so with the date.
+
+## Memory
+- Save a dated line per project: status, milestone, target date, blocker.
+- Count consecutive runs a project has been stalled and show the count.
+
+## Table layout
+```text
+# Project momentum, <yyyy-mm-dd>
+
+| Project | Status | Since | Next milestone (date) | Blocker |
+| --- | --- | --- | --- | --- |
+| <name> | stalled | <n> runs | <milestone> (<date>) | <stated blocker or not stated> |
+
+## Next actions
+- <project>: <one step under two hours>
+
+## Questions for you
+- <project>: <what you need to know>
+```

@@ -1,36 +1,42 @@
 # Launch Content Planner — Claude Managed Agent native package
 
-An independent package for `ant apply`. It uses Anthropic-native resources only.
+Gives you a dated launch checklist that runs from today to a week after launch day, plus ready-to-edit copy for each channel you picked, such as Show HN, Product Hunt, X or your newsletter. It reads your product page so the copy matches it, and it checks each channel's current posting rules and links where they are stated. It never posts anything.
 
 ## Resources
-- `agents/launch-content-planner.md` — primary agent, built-in tools, linked skill, selective multiagent capabilities.
-- `skills/workflow-guide/SKILL.md` — local, self-contained task guide (no GitHub rate limits).
-- `environments/cloud.yaml` — default minimal cloud sandbox; no extra CLI or packages.
-- `memory_stores/history.yaml` — persistent memory resource. It does **not** attach automatically to arbitrary interactive sessions.
-- `deployments/scheduled.md` — scheduled execution; explicitly attaches memory read/write.
+- `agents/launch-content-planner.md`: the agent's instructions, tools and multiagent settings.
+- `skills/workflow-guide/SKILL.md`: the report template and evidence rules for this task.
+- `environments/cloud.yaml`: Cloud sandbox with open web access for web search and fetch. The shell is disabled in the agent, and nothing secret is stored here.
+- `memory_stores/history.yaml`: private memory for dated snapshots. It does **not** attach itself to interactive sessions.
+
+## Network and tools
+- Network: `unrestricted` (open web access, minus Anthropic's safety blocklist), so web search and web fetch can reach public pages. With `limited` networking and no `allowed_hosts`, web search and web fetch return nothing.
+- Tools: web search, web fetch and the file tools. The shell (`bash`) is disabled in `agents/launch-content-planner.md`, so the agent cannot run commands.
+- Risk: anything in the sandbox can leave over the open network. Do not paste secrets, private exports or customer data into a session.
+- It never posts. You copy the drafts you like into each channel yourself.
 
 ## First-run setup
-1. Run `ant apply --dry-run .` and inspect the resource plan.
-2. Edit `deployments/scheduled.md` to choose your actual timezone and schedule. **Do not apply the deployment until you want recurring billed runs.**
-3. To install the agent, environment, skill and memory **without scheduling**, run:
+1. This package has no schedule. Run it two to four weeks before a launch, and again if the date or channels change. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
+2. Run `ant apply --dry-run .` and inspect the resource plan.
+3. Install the agent, environment, skill and memory store:
 
    `ant apply agents/launch-content-planner.md environments/cloud.yaml memory_stores/history.yaml skills/workflow-guide`
 
-4. For scheduled automation, run `ant apply .` after reviewing the deployment. Scheduled sessions created by this deployment will receive the memory store.
-5. If you create an interactive session in Console, attach the existing memory store yourself at creation with `read_write` access. Merely installing it does not mount it in an interactive session.
-6. At first run, provide your context, preferred cadence, data sources, and desired output. The agent will not make up missing inputs.
+   `ant apply .` installs the same four resources, because there is no deployment.
+4. Create a session in Console with this agent and environment. Attach the memory store with `read_write` access if you want a later run to pick up the same plan.
+5. Send this as your first message, with every `<placeholder>` replaced. If one is left, you get a setup checklist instead of a plan:
 
-## Tools, orchestration, and MCP
-- Native agent toolset is configured. There are no third-party CLI dependencies or authenticated MCP servers bundled.
-- Multiagent capabilities are explicitly configured according to task complexity; consult `agents/launch-content-planner.md`. Parallel runs can cost more.
-- Authenticated APIs such as Google Search Console, Stripe, GitHub, or social platforms are **not connected automatically**. Use exports where possible, or manually add an authenticated MCP integration where needed. Do not put personal API tokens in downloadable files.
-- The skill is bundled locally to avoid GitHub API rate limiting during installation.
+   Your inputs
+   - Product: <name and URL>
+   - Launch date: <yyyy-mm-dd>
+   - What's new: <one paragraph on what you are launching and who it is for>
+   - Proof: <real numbers, quotes or users you can cite, or none>
+   - Channels: <e.g. Show HN, Product Hunt, X, Bluesky, your newsletter, a subreddit>
 
 ## Verification
 1. Ask the agent which tools and memory mounts are actually available.
-2. Run a representative task using real user-provided data.
-3. In a deployment-created session, ask it to write a dated note to memory. Launch a second deployment session and verify it can read that note.
-4. If multiagent is enabled, request an appropriate broad task and inspect session events for real subagent/workflow activity.
+2. Run once with placeholders left in. You should get only a setup checklist.
+3. Run with real inputs and check that every channel rule in the plan links to a source, and that the copy uses no proof you did not give.
+4. In a session with the memory store attached, ask it to write a dated note to memory. Start a second session with the store attached and check it can read that note.
 
 ## Status
-Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.**
+Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.** No run cost has been measured.

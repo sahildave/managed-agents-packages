@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
 name: work-rest-balance-cloud
-description: Default minimal cloud sandbox for Work-Rest Balance Reviewer. No third-party
-  credentials or extra packages.
+description: Cloud sandbox with no outbound network. The shell, web search and web fetch are disabled in the agent; it works only from what you paste.
 config:
   type: cloud
   networking:

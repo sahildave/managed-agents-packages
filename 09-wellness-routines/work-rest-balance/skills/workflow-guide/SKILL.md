@@ -1,21 +1,51 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Work-Rest Balance Reviewer.
+description: Log reading rules, rest-block rules and report template for Work-Rest Balance Reviewer.
 ---
 
-# Work-Rest Balance Reviewer workflow guide
+# Work and rest review
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Review voluntary logs; spot obvious overcommitment without medical inference; propose optional adjustments.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Nonjudgmental workload reflection and next-week schedule protections.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to read the log, how to check rest goals, what to keep in memory and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Reading the log
+- Take hours only from what the user wrote. "Worked late" with no time is "late, hours not given", not a number you estimate.
+- A day the log does not mention is "not logged", never a day off.
+- Totals cover only the days with hours. Say how many days that is.
+
+## Checking rest goals
+- Each goal the user gave gets one line: met, missed or unknown, with the log text that decides it.
+- A pattern repeats when the same goal is missed in this week and at least one earlier snapshot. Cite the dates. Without a previous snapshot, say there is no baseline yet.
+
+## Rest blocks for next week
+- Two or three blocks, each with a day and a time range.
+- Place them around the fixed commitments the user gave; never on top of one.
+- Prefer the goal missed most often. Keep each block small enough to keep: an evening, a morning, one day off.
+- Every block is a suggestion. The user puts it in their own calendar.
+
+## Stop rules
+- Exhaustion, low mood, poor sleep, pain or any health concern: do not analyse it. Say this agent is not the right help and suggest a doctor or qualified professional.
+- No medical, sleep or mental health advice.
+
+## Memory
+- `profile.md`: rest goals and the date they changed.
+- `snapshots/<yyyy-mm-dd>.md`: hours per logged day, goal results and the blocks suggested. No health details.
+
+## Report layout
+```text
+# Work and rest, week ending <yyyy-mm-dd>
+
+## Last week
+| Day | Work hours | Note from your log |
+| --- | --- | --- |
+
+<total> hours over <n> logged days.
+
+## Rest goals
+- <goal>: met / missed / unknown. "<log text>". Also missed on <dates>, or "no baseline yet".
+
+## Protect next week
+1. <day>, <start>-<end>: <goal it serves>
+
+## Memory
+- <what was written, or "no memory store attached">
+```

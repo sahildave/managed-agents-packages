@@ -1,21 +1,40 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Launch Content Planner.
+description: Channel-rule sources, proof rules and launch plan template for Launch Content Planner.
 ---
 
-# Launch Content Planner workflow guide
+# Launch plan
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Create milestones, launch assets, distribution options, and retrospective prompts; never auto-post.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Launch plan, draft copy, channel checklist and risk list.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes where channel rules come from, how to use proof and the plan layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Channel rules
+- Read each channel's rules from its own page, not from a blog post about it. Examples: Hacker News `https://news.ycombinator.com/showhn.html`, Product Hunt's launch guide on `producthunt.com`, a subreddit's sidebar or wiki rules page.
+- Give the link and the fetch date for every rule you state. If you could not reach the page, say so and leave the rule out.
+- Note limits that shape the copy: title length, whether links are allowed, self-promotion rules, the best day only if the platform itself says so.
+
+## Proof rules
+- Proof is only what the user gave in "Proof": numbers, quotes, user names, results. If it says `none`, write copy that makes no claims of traction.
+- Wording about the product comes from the product page or the "What's new" input. Quote the page where you reuse a phrase.
+- Never invent launch-day numbers, upvote targets, press coverage or expected results.
+
+## Plan layout
+```text
+# Launch plan: <product>, launch day <yyyy-mm-dd>
+
+## Checklist
+| Date | Task | Channel | Done |
+|---|---|---|---|
+| <yyyy-mm-dd> | <task> | <channel> | [ ] |
+
+## Copy
+### <Channel>
+Rules: <limits that apply> (<link>, fetched <yyyy-mm-dd>)
+<draft>
+
+## Risks
+- <risk>: <what to do about it>
+
+## Sources I could not reach
+- <site>: <reason>
+```
+Save the launch date, the channels and the checklist to memory. On a later run, show which checklist dates have passed and ask the user which tasks are done; do not mark anything done yourself.

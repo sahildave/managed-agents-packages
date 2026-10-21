@@ -1,9 +1,7 @@
 # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
 name: founder-weekly-brief-cloud
-description: Default minimal cloud sandbox for Founder Weekly Brief. No third-party
-  credentials or extra packages.
+description: Cloud sandbox with open web access for web search and fetch. The shell is disabled in the agent, and nothing secret is stored here.
 config:
   type: cloud
   networking:
-    type: limited
-    allow_package_managers: false
+    type: unrestricted

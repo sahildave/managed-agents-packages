@@ -1,21 +1,46 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Weekly Retrospective Facilitator.
+description: Review rules and Keep, Stop, Start template for Weekly Retrospective Facilitator.
 ---
 
-# Weekly Retrospective Facilitator workflow guide
+# Weekly retrospective
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Contrast stated plan and actual updates; avoid inventing completion; ask targeted reflection questions.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Keep/Stop/Start retrospective and next-week experiments.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to compare the week and the review layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Review rules
+- Compare item by item: each planned item is done, partly done, not done or not mentioned. Never mark an item done unless the user says so.
+- Every Keep, Stop and Start item quotes or points at a line the user wrote. If you cannot point at one, leave the item out.
+- A pattern needs two or more weeks in memory. With one week, write "first review, no pattern yet".
+- Ask at most three questions, only where the reason for a slip is not stated.
+- Experiments: at most two, each small enough to try in one week, with what the user will notice if it worked.
+- Energy notes: reflect them back in the user's words. Do not score, diagnose or label moods.
+
+## Memory
+- Save the dated review, the experiments and which planned items slipped.
+- On the next run, ask or check whether last week's experiments happened. Report what the user says; do not assume.
+
+## Review layout
+```text
+# Week ending <yyyy-mm-dd>
+
+## Plan against what happened
+- <planned item>: done / partly / not done / not mentioned. "<user's words>"
+
+## Keep
+- <practice>: "<user's line it rests on>"
+
+## Stop
+- <practice>: "<user's line>"
+
+## Start
+- <practice>: "<user's line>"
+
+## Last week's experiments
+- <experiment>: <happened / did not / not reported>
+
+## Experiments for next week
+1. <experiment>. You will know it worked if <observable sign>.
+
+## Questions for you
+- <question>
+```

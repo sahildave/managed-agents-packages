@@ -1,21 +1,49 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Growth Experiment Reviewer.
+description: Verdict template and evidence rules for Growth Experiment Reviewer.
 ---
 
-# Growth Experiment Reviewer workflow guide
+# Growth experiment review
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Compare planned measures with actual observations; do not invent uplift or statistical confidence.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Experiment results log, recommendation and next hypothesis.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to read the numbers, what you can claim and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Reading each experiment
+- Take the change, metric, dates and numbers from the user's log. If one is missing, say which and review what is there.
+- Rate = events divided by visitors (or sessions, sign-ups, whatever base the user gave). Show the division, for example "18 / 640 = 2.8%". Never compute a rate without a base.
+- Compare the test period with the period before it, or with the control if the user ran one. Say which comparison you used.
+- Check for things that blur the result: two tests on the same page at the same time, a launch or holiday inside the window, a metric defined differently before and after, a test period shorter than one full week.
+
+## Evidence rules
+- Use only the numbers the user pasted. Never fill in a baseline, a traffic figure or an industry benchmark.
+- Never state statistical significance, a p-value or a confidence level unless the user's log includes it. When a difference rests on a few dozen events or fewer, say it could be noise.
+- A before-and-after comparison without a control shows a change, not its cause. Say so.
+- Mark every reason as from the log or as your judgment.
+
+## Verdicts
+- Keep: the metric moved the way the hypothesis said, nothing blurs it, and the change is cheap to keep.
+- Stop: the metric did not move or moved the wrong way over a full test window.
+- Rerun: too few events, a blurred window or a missing baseline. Say what to change in the rerun.
+
+## Report layout
+```text
+# Experiment review, <yyyy-mm-dd>
+
+Goal: <goal from the inputs>
+
+## <experiment name>: <keep, stop, rerun>
+- Change: <what was changed>
+- Metric: <metric>, <before> -> <during> (<arithmetic>)
+- What blurs it: <issues, or none found>
+- What the numbers cannot show: <one line>
+- Reason: <one or two lines>
+
+## Next test
+- Change: <one change>
+- Why: <which result it follows from>
+- Metric and base: <metric, the base to divide by>
+- Stop date: <date, at least one full week out>
+
+## Next actions
+1. <action>
+```
+Save each verdict and the proposed next test to memory with the date, so the next review can check whether it ran.

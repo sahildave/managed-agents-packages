@@ -1,21 +1,49 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Decision Journal Reviewer.
+description: Decision log format, review rules and report template for Decision Journal Reviewer.
 ---
 
-# Decision Journal Reviewer workflow guide
+# Decision journal review
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Log decision rationale and predictions, review due outcomes, separate hindsight from prior evidence.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Decision review with what changed, confidence, and follow-up date.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes the log format, how to judge a decision and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Logging a decision
+Each new decision gets one file, `decisions/<yyyy-mm-dd>-<short-name>.md`, written once:
+```text
+Decided: <yyyy-mm-dd>
+Decision: <what was chosen, and what was not>
+Reasoning: <the user's words>
+Assumptions: <each one on its own line>
+Prediction: <what the user expects to happen, and by when>
+Check on: <yyyy-mm-dd>
+```
+If the user gives no check date, propose one and mark it as proposed. If the user gives no prediction, ask for one in the report; a decision with no prediction cannot be reviewed.
+
+## Reviewing a decision
+- A decision is due when its check date has passed or the user reports an outcome for it.
+- Outcome: only what the user reported. With no report, the decision stays open; never guess an outcome.
+- For each assumption: held, did not hold, or not yet known. Quote the outcome text that decides it.
+- Keep two questions apart: was the reasoning sound on what was known at the time, and did it turn out well. A good outcome does not prove good reasoning.
+- Append the review to the decision file under `Review <yyyy-mm-dd>:`. Never edit the original lines.
+
+## Report layout
+```text
+# Decision review, <yyyy-mm-dd>
+
+## Logged today
+- <decision>: check on <date>
+
+## Due for review
+### <decision> (decided <date>)
+- Predicted: <prediction>
+- Happened: "<user's outcome text>"
+- Assumptions: <assumption>: held / did not hold / not yet known
+- Reasoning at the time: <sound / weak, and why, using only what was known then>
+- Next check: <date, or "closed">
+
+## Still open
+- <decision>: check on <date>, no outcome reported
+
+## Memory
+- <what was written, or "no memory store attached">
+```

@@ -1,21 +1,37 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Newsletter Curator.
+description: Source rules, date checks and issue template for Newsletter Curator.
 ---
 
-# Newsletter Curator workflow guide
+# Newsletter issue
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Research time-bounded developments; verify publication dates; deduplicate prior inclusions; provide links.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Short digest with why-it-matters commentary and citations.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes what counts as a good item and the issue layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Source rules
+- Prefer the primary source: the company's changelog or blog, the paper, the release notes, the original post. Link a news write-up only when there is no primary source, and say so.
+- Every item needs a publication date read from the page itself. If the page shows no date, or the date is older than seven days, leave the item out.
+- Never use a source the user listed under "Leave out", and never reuse a link that memory shows in a past issue.
+- Do not quote more than one short sentence from a source. Write the summary in your own words.
+- "Why it matters" must be about the readers named in the inputs. If you cannot say why it matters to them, drop the item.
+- If a topic had no news worth including this week, say so rather than filling the slot.
+
+## Issue layout
+```text
+# <Issue title>, <yyyy-mm-dd>
+
+<Two-sentence intro in the user's voice>
+
+## 1. <Item headline>
+<Two-sentence summary.>
+Why it matters: <one sentence for these readers>
+Source: <link> (published <yyyy-mm-dd>)
+
+## 2. ...
+
+## Topics with nothing this week
+- <topic>
+
+## Sources I could not reach
+- <site>: <reason>
+```
+Save each included link and the issue date to memory so the next issue skips them.

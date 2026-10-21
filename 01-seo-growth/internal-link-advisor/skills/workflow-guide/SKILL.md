@@ -1,21 +1,47 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Internal Link Advisor.
+description: Link-suggestion template and evidence rules for Internal Link Advisor.
 ---
 
-# Internal Link Advisor workflow guide
+# Internal link suggestions
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Inspect available page content and sitemap; propose precise page-to-page links; do not claim every page was crawled.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Link opportunities with source, target, anchor suggestion and evidence.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes which pages to read, what counts as a good link and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Reading the site
+- Start from the sitemap the user gave (or `/sitemap.xml`, or the one named in `/robots.txt`). If none loads, use `site:<domain>` searches and say so.
+- Read every target page first, then other pages up to the user's page limit. Count every fetch against the limit.
+- Pick pages to read by how likely they are to mention a target topic: title and URL first, then `site:<domain> <topic>` searches.
+- Keep a list of the pages you read. Every page you did not read goes in "Not read", so the user knows the report is partial.
+
+## What counts as a good link
+- The source sentence already talks about the target page's topic. Never suggest rewriting a paragraph to fit a link.
+- Anchor text is three to six words copied from that sentence, describing the target. Never "click here" or "read more".
+- At most three new links per source page, and never a second link to a target the page already links to.
+- Never suggest a link from a page to itself or to a page that redirects or failed to load.
+
+## Evidence rules
+- Quote the source sentence exactly as fetched. Never suggest a link from a sentence you did not read.
+- You have no crawler, analytics or Search Console. Never claim a page is "orphaned", gets traffic, or ranks; say "inbound links unknown beyond the pages read".
+- If a target page has no good source sentence among the pages read, say so instead of forcing one.
+
+## Report layout
+```text
+# Internal links for <domain>, <yyyy-mm-dd>
+
+Read <n> of <page limit> pages. Targets: <URL>, <URL>
+
+## Links to <target URL>
+1. On <source URL>
+   - Sentence: "<exact sentence>"
+   - Anchor: "<anchor text>"
+
+## Targets with no good source yet
+- <target URL>: <what kind of page should link to it>
+
+## Not read
+- <URL or "the rest of the sitemap">: <page limit, blocked, failed>
+
+## Next actions
+1. <action>
+```
+Save every suggested link to memory with the date.

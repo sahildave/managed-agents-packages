@@ -1,21 +1,44 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Research Reading Digest.
+description: Source and credibility rules and reading-list template for Research Reading Digest.
 ---
 
-# Research Reading Digest workflow guide
+# Reading digest
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Discover useful recent primary sources; cross-check and distinguish research from opinion; avoid repeating prior items.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Five-item reading list with abstracts, credibility notes and actionable insights.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes what counts as a good read, how to judge credibility and the list layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Source rules
+- Good sources: arXiv and other preprint servers, journal and conference pages, standards bodies, government and lab reports, engineering blogs that publish methods and data, long-form posts by people who did the work.
+- Every pick needs a publication date inside the user's time window, read from the page itself. No date, no pick.
+- Link the original, not a summary of it. If only a news write-up is reachable, say so in the credibility note.
+- If you could read only the abstract (paywall, login, PDF blocked), say "abstract only" and judge it on that alone.
+- Do not quote more than one short sentence. Summarise in your own words.
+- Skip anything memory shows was already recommended.
+
+## Credibility note
+State what you checked, not a score:
+- Kind: peer-reviewed paper, preprint, report, opinion or explainer.
+- Who: the authors or organisation, as the page names them.
+- Evidence: what the claim rests on (an experiment, a dataset, a survey, experience, none stated) and its size if the source gives it.
+- Cross-check: a second source that agrees or disagrees, with a link, or "no second source found".
+- Never state citation counts, rankings or credentials you did not read on a page.
+
+## List layout
+```text
+# Reading digest: <subjects>, <yyyy-mm-dd> to <yyyy-mm-dd>
+
+## 1. <Title>
+Source: <link> (published <yyyy-mm-dd>)
+Summary: <two to four sentences in plain words>
+Credibility: <kind>; <who>; <evidence>; <cross-check>
+Try this: <one thing the reader could do or use>
+
+## 2. ...
+
+## Left out
+- <title>: <why: outside the window, abstract only and too thin, opinion with no evidence>
+
+## Sources I could not reach
+- <site>: <reason>
+```
+Save each pick's title, link and date to memory so a later digest does not repeat it.

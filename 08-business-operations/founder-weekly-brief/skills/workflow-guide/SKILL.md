@@ -1,21 +1,47 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Founder Weekly Brief.
+description: Number handling, outside-change rules and one-page brief template for Founder Weekly Brief.
 ---
 
-# Founder Weekly Brief workflow guide
+# Founder weekly brief
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Combine memory with carefully sourced relevant news; distinguish facts from recommendations; avoid claiming private account access.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: One-page founder brief with decisions, risks, opportunities and links.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to handle your numbers, what counts as an outside change and the brief layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Your numbers
+- Numbers come only from "This week's numbers" in the inputs. Copy them exactly, with the units and dates the user gave.
+- Show a change only when memory holds the same number from an earlier brief. Write the earlier date next to it. With no earlier value, write "first week recorded".
+- If the user wrote `none`, leave the numbers section out and say so. Never estimate a number, a trend or a forecast.
+- Do not read meaning into small week-to-week moves. Point out a move only if the user's goals make it matter.
+
+## Outside changes
+- Look only at the competitors and topics the user named, over the last seven days.
+- Good sources: the competitor's own changelog, pricing page, blog or docs; the original announcement for a topic. Give the link and the date on the page.
+- Keep a change only if you can say which goal it touches. Otherwise drop it.
+- A pricing page you have not seen before is a first snapshot, not a change.
+
+## Brief layout
+```text
+# Weekly brief, week ending <yyyy-mm-dd>
+
+## Numbers
+| Metric | This week | Last brief (<yyyy-mm-dd>) | Change |
+|---|---|---|---|
+
+## Shipped
+- <item from the inputs>
+
+## Outside changes
+- <change> (<link>, <date>): touches <goal> because <reason>
+
+## Decisions due
+### <decision>
+- Option A: <option>. Depends on: <what you would need to know>
+- Option B: ...
+
+## Risks
+- <risk>: <what to watch>
+
+## Sources I could not reach
+- <site>: <reason>
+```
+Keep it to one page. Save the numbers with the date and the decisions to memory so next week's brief can compare.

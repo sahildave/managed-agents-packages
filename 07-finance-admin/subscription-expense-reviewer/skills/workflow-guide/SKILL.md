@@ -1,21 +1,53 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Subscription Expense Reviewer.
+description: Recurrence rules, cost arithmetic and report template for Subscription Expense Reviewer.
 ---
 
-# Subscription Expense Reviewer workflow guide
+# Subscription expense review
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Group likely recurring charges, flag duplicates and changes, avoid claiming cancellation or bank access.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Cost summary, potential savings and manual verification list.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes when a charge counts as recurring, how to total costs, what to keep in memory and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Reading the paste
+- Accept any row shape that gives a date, a merchant and an amount. Note the currency on each row; if it is missing, ask rather than assume.
+- Merchant names on statements vary (`ACME*PRO 4821`, `Acme Pro`). Group them only when the name clearly matches; list uncertain matches under "Check".
+- Drop any card number, account number, sort code, IBAN, address or reference that looks personal before you quote a row.
+
+## When a charge is recurring
+- Monthly: the same merchant on roughly the same day in two or more months.
+- Yearly: only if the user says so, or memory has the charge from about a year earlier.
+- One charge with no repeat in the rows is "one-off or unknown", not recurring.
+
+## Flags
+- Duplicate: two recurring charges for the same merchant in the same period, or two tools the user lists for the same job.
+- Price rise: a later amount above an earlier one for the same merchant, in the rows or against the last snapshot. Show both amounts and dates.
+- Unused: a recurring merchant missing from the "still in use" list. If that list is "not sure", flag nothing as unused and ask instead.
+- Over budget: the monthly total above the budget the user gave.
+
+## Cost arithmetic
+- Monthly cost: the latest amount of a monthly charge; a yearly charge divided by 12. Yearly cost: monthly times 12.
+- Total per currency. Never convert currencies; you have no exchange rate.
+- Show the rows each total came from, so the user can check the sum.
+
+## Memory
+- `profile.md`: budget, still-in-use list and the date they changed.
+- `snapshots/<yyyy-mm-dd>.md`: merchant, amount, currency, interval, last seen date. Nothing else from the statement.
+
+## Report layout
+```text
+# Recurring charges, <first row date> to <last row date>
+
+## Recurring
+| Merchant | Interval | Latest amount | Monthly | Yearly | Flag |
+| --- | --- | --- | --- | --- | --- |
+
+Total: <monthly> a month, <yearly> a year (<currency>). Budget: <budget or "none given">.
+
+## Check or cancel yourself
+1. <merchant>: <flag and evidence>. You cancel this in the merchant's own billing settings.
+
+## Check
+- <uncertain grouping or one-off charge>: <why>
+
+## Memory
+- <what was written, or "no memory store attached">
+```

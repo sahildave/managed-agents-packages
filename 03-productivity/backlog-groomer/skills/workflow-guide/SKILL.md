@@ -1,21 +1,44 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Personal Backlog Groomer.
+description: Grooming rules and board template for Personal Backlog Groomer.
 ---
 
-# Personal Backlog Groomer workflow guide
+# Backlog grooming
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Group duplicates, split vague tasks, suggest delegation/deletion, retain unconfirmed decisions as suggestions.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Now/Next/Later task board and unanswered questions.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to sort the backlog and the board layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Grooming rules
+- Duplicates: two lines that would be closed by the same piece of work. Keep the clearer wording and list the merged lines under it.
+- Vague task: no verb, or no way to tell when it is done ("marketing", "fix onboarding"). Rewrite it as a first step of under two hours and keep the original wording in brackets.
+- Now holds only what fits the user's weekly hours. Estimate each Now task in hours and show the total against the hours given. If you cannot estimate a task, say so instead of guessing.
+- Next is the following two to four weeks. Later is everything else that still serves a goal.
+- A task tied to no goal goes under "Suggested deletions" with the reason. Never drop a line silently: every pasted line ends up on the board, merged, or in a suggested deletion.
+- Hand-off suggestions name the kind of help (contractor, tool, automation), never a person or company.
+
+## Memory
+- Save the dated board: each task, its column and its estimate.
+- On the next run, flag tasks that sat in Now on the previous board and are still open. Without a previous board, say "no earlier board" and flag nothing.
+
+## Board layout
+```text
+# Backlog board, <yyyy-mm-dd>
+Weekly hours: <n>. Now totals <n> hours.
+
+## Now
+- <task> (<est> h, goal: <goal>) <"in Now since <date>" if memory shows it>
+
+## Next
+- <task> (goal: <goal>)
+
+## Later
+- <task> (goal: <goal>)
+
+## Merged duplicates
+- "<kept wording>" ← "<merged line>", "<merged line>"
+
+## Suggested deletions or hand-offs
+- <task>: <reason: no goal, outdated, someone else's job>
+
+## Questions for you
+- <what you need to know to place a task>
+```

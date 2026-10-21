@@ -1,36 +1,41 @@
 # Content Repurposing Editor — Claude Managed Agent native package
 
-An independent package for `ant apply`. It uses Anthropic-native resources only.
+Takes one piece you already wrote, such as an article, a post or release notes, and drafts a native version for each channel you post on: an X thread, a LinkedIn post, a newsletter section. Every claim in a draft traces back to a sentence in your source, and you get a list of facts to check before you post. It never posts anything.
 
 ## Resources
-- `agents/content-repurposer.md` — primary agent, built-in tools, linked skill, selective multiagent capabilities.
-- `skills/workflow-guide/SKILL.md` — local, self-contained task guide (no GitHub rate limits).
-- `environments/cloud.yaml` — default minimal cloud sandbox; no extra CLI or packages.
-- `memory_stores/history.yaml` — persistent memory resource. It does **not** attach automatically to arbitrary interactive sessions.
-- `deployments/scheduled.md` — scheduled execution; explicitly attaches memory read/write.
+- `agents/content-repurposer.md`: the agent's instructions, tools and multiagent settings.
+- `skills/workflow-guide/SKILL.md`: the report template and evidence rules for this task.
+- `environments/cloud.yaml`: Cloud sandbox with no outside network access. The agent works only from the text you paste; the shell, web search and web fetch are disabled in the agent.
+- `memory_stores/history.yaml`: private memory for dated snapshots. It does **not** attach itself to interactive sessions.
+
+## Network and tools
+- Network: `limited` with no `allowed_hosts` and no package managers, so the sandbox reaches nothing outside. The task needs no web access: the agent works only from the text you paste.
+- Tools: the file tools only. The shell (`bash`), web search and web fetch are disabled in `agents/content-repurposer.md`, so the agent cannot run commands or read your linked page.
+- What you paste stays in the session and, if you attach it, the memory store. Do not paste secrets or customer data.
+- It never posts. You copy the drafts you like into each channel yourself.
 
 ## First-run setup
-1. Run `ant apply --dry-run .` and inspect the resource plan.
-2. Edit `deployments/scheduled.md` to choose your actual timezone and schedule. **Do not apply the deployment until you want recurring billed runs.**
-3. To install the agent, environment, skill and memory **without scheduling**, run:
+1. This package has no schedule. Run it after you publish something you want on other channels. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
+2. Run `ant apply --dry-run .` and inspect the resource plan.
+3. Install the agent, environment, skill and memory store:
 
    `ant apply agents/content-repurposer.md environments/cloud.yaml memory_stores/history.yaml skills/workflow-guide`
 
-4. For scheduled automation, run `ant apply .` after reviewing the deployment. Scheduled sessions created by this deployment will receive the memory store.
-5. If you create an interactive session in Console, attach the existing memory store yourself at creation with `read_write` access. Merely installing it does not mount it in an interactive session.
-6. At first run, provide your context, preferred cadence, data sources, and desired output. The agent will not make up missing inputs.
+   `ant apply .` installs the same four resources, because there is no deployment.
+4. Create a session in Console with this agent and environment. Attach the memory store with `read_write` access if you want it to remember your voice and what it already repurposed.
+5. Send this as your first message, with every `<placeholder>` replaced. If one is left, you get a setup checklist instead of drafts:
 
-## Tools, orchestration, and MCP
-- Native agent toolset is configured. There are no third-party CLI dependencies or authenticated MCP servers bundled.
-- Multiagent capabilities are explicitly configured according to task complexity; consult `agents/content-repurposer.md`. Parallel runs can cost more.
-- Authenticated APIs such as Google Search Console, Stripe, GitHub, or social platforms are **not connected automatically**. Use exports where possible, or manually add an authenticated MCP integration where needed. Do not put personal API tokens in downloadable files.
-- The skill is bundled locally to avoid GitHub API rate limiting during installation.
+   Your inputs
+   - Source text: <paste the full article, post or release notes>
+   - Source link: <public URL of the original, or none>
+   - Channels: <e.g. X, Bluesky, LinkedIn, newsletter>
+   - Voice: <e.g. plain and a bit dry, no emoji, no hype words>
 
 ## Verification
 1. Ask the agent which tools and memory mounts are actually available.
-2. Run a representative task using real user-provided data.
-3. In a deployment-created session, ask it to write a dated note to memory. Launch a second deployment session and verify it can read that note.
-4. If multiagent is enabled, request an appropriate broad task and inspect session events for real subagent/workflow activity.
+2. Run once with placeholders left in. You should get only a setup checklist.
+3. Run with real inputs and check that every claim in each draft appears in your source text.
+4. In a session with the memory store attached, ask it to write a dated note to memory. Start a second session with the store attached and check it can read that note.
 
 ## Status
-Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.**
+Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.** No run cost has been measured.

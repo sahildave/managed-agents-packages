@@ -1,36 +1,42 @@
 # Newsletter Curator — Claude Managed Agent native package
 
-An independent package for `ant apply`. It uses Anthropic-native resources only.
+Drafts your next newsletter issue from the last seven days of news, releases and posts in the topics you cover. Each item has a dated link to its primary source, a two-sentence summary and a line on why it matters to your readers. With memory attached, it skips links from past issues. It never sends anything.
 
 ## Resources
-- `agents/newsletter-curator.md` — primary agent, built-in tools, linked skill, selective multiagent capabilities.
-- `skills/workflow-guide/SKILL.md` — local, self-contained task guide (no GitHub rate limits).
-- `environments/cloud.yaml` — default minimal cloud sandbox; no extra CLI or packages.
-- `memory_stores/history.yaml` — persistent memory resource. It does **not** attach automatically to arbitrary interactive sessions.
-- `deployments/scheduled.md` — scheduled execution; explicitly attaches memory read/write.
+- `agents/newsletter-curator.md`: the agent's instructions, tools and multiagent settings.
+- `skills/workflow-guide/SKILL.md`: the report template and evidence rules for this task.
+- `environments/cloud.yaml`: Cloud sandbox with open web access for web search and fetch. The shell is disabled in the agent, and nothing secret is stored here.
+- `memory_stores/history.yaml`: private memory for dated snapshots. It does **not** attach itself to interactive sessions.
+
+## Network and tools
+- Network: `unrestricted` (open web access, minus Anthropic's safety blocklist), so web search and web fetch can reach public pages. With `limited` networking and no `allowed_hosts`, web search and web fetch return nothing.
+- Tools: web search, web fetch and the file tools. The shell (`bash`) is disabled in `agents/newsletter-curator.md`, so the agent cannot run commands.
+- Workflows are enabled so the agent can research three or more topics in parallel. Parallel runs can cost more; with fewer topics it works in one thread.
+- Risk: anything in the sandbox can leave over the open network. Do not paste secrets, private exports or customer data into a session.
 
 ## First-run setup
-1. Run `ant apply --dry-run .` and inspect the resource plan.
-2. Edit `deployments/scheduled.md` to choose your actual timezone and schedule. **Do not apply the deployment until you want recurring billed runs.**
-3. To install the agent, environment, skill and memory **without scheduling**, run:
+1. This package has no schedule. Run it when you sit down to write an issue. A session you start in Console has no cost cap. To cap a run, create the session through the API with a `max_list_cost` budget ([budgets](https://platform.claude.com/docs/en/managed-agents/budgets)); a budget cannot be added to a session later. No run cost has been measured yet.
+2. Run `ant apply --dry-run .` and inspect the resource plan.
+3. Install the agent, environment, skill and memory store:
 
    `ant apply agents/newsletter-curator.md environments/cloud.yaml memory_stores/history.yaml skills/workflow-guide`
 
-4. For scheduled automation, run `ant apply .` after reviewing the deployment. Scheduled sessions created by this deployment will receive the memory store.
-5. If you create an interactive session in Console, attach the existing memory store yourself at creation with `read_write` access. Merely installing it does not mount it in an interactive session.
-6. At first run, provide your context, preferred cadence, data sources, and desired output. The agent will not make up missing inputs.
+   `ant apply .` installs the same four resources, because there is no deployment.
+4. Create a session in Console with this agent and environment. Attach the memory store with `read_write` access if you want it to skip links from past issues.
+5. Send this as your first message, with every `<placeholder>` replaced. If one is left, you get a setup checklist instead of an issue:
 
-## Tools, orchestration, and MCP
-- Native agent toolset is configured. There are no third-party CLI dependencies or authenticated MCP servers bundled.
-- Multiagent capabilities are explicitly configured according to task complexity; consult `agents/newsletter-curator.md`. Parallel runs can cost more.
-- Authenticated APIs such as Google Search Console, Stripe, GitHub, or social platforms are **not connected automatically**. Use exports where possible, or manually add an authenticated MCP integration where needed. Do not put personal API tokens in downloadable files.
-- The skill is bundled locally to avoid GitHub API rate limiting during installation.
+   Your inputs
+   - Readers: <who reads your newsletter, one sentence>
+   - Topics: <three to five topics you cover>
+   - Leave out: <sources or sites to skip, or none>
+   - Items: <how many items per issue, e.g. 5>
+   - Voice: <e.g. plain and a bit dry, no emoji, no hype words>
 
 ## Verification
 1. Ask the agent which tools and memory mounts are actually available.
-2. Run a representative task using real user-provided data.
-3. In a deployment-created session, ask it to write a dated note to memory. Launch a second deployment session and verify it can read that note.
-4. If multiagent is enabled, request an appropriate broad task and inspect session events for real subagent/workflow activity.
+2. Run once with placeholders left in. You should get only a setup checklist.
+3. Run with real inputs and check that every item links to a source dated within the last seven days.
+4. In a session with the memory store attached, ask it to write a dated note to memory. Start a second session with the store attached and check it can read that note.
 
 ## Status
-Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.**
+Generated files passed local YAML/frontmatter and reference checks. **Not live-tested against your Anthropic workspace.** No run cost has been measured.

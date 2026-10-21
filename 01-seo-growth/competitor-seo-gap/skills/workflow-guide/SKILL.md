@@ -1,21 +1,42 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Competitor SEO Gap Scout.
+description: Topic-gap template and evidence rules for Competitor SEO Gap Scout.
 ---
 
-# Competitor SEO Gap Scout workflow guide
+# Competitor topic gaps
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Map accessible topic coverage and SERP examples; note gaps where evidence is incomplete; avoid manufactured keyword volume.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Topic-gap opportunity matrix with sources and priority.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to read coverage, what you can claim and the report layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Reading coverage
+- Sources, in order: `/sitemap.xml` (or the sitemap named in `/robots.txt`), the blog, docs or guides index, the main navigation, then `site:<domain> <topic>` searches.
+- A topic is a subject a reader would search for, such as "invoice late fees" or "Stripe vs Paddle". Group pages that answer the same question under one topic.
+- Name the competitor pages you saw for each topic. Two or three URLs are enough.
+- If a competitor blocks fetching or has no sitemap, say which sources you could read and treat its list as partial.
+- Split the work by competitor when there are three or more, one strand each, then merge the topic lists in the primary thread.
+
+## Evidence rules
+- You have no keyword or rank tool. Never state search volume, keyword difficulty, traffic or rankings. Say "volume unknown".
+- "Your site covers it" needs one of your URLs. "Gap" means you searched your sitemap and `site:` and found none; say "not found", never "you have nothing on this" when a source was blocked.
+- Priority is a judgment. Base it on how many competitors cover the topic and how close it is to what the user sells, and say which.
+- Skip topics memory says were already suggested unless a competitor added a page since.
+
+## Report layout
+```text
+# Competitor topic gaps, <yyyy-mm-dd>
+
+Read: <competitor>: <sources read>; <competitor>: <sources read>
+
+| Topic | Covered by | Your site | Priority |
+| --- | --- | --- | --- |
+| <topic> | <competitor> (<URL>), <competitor> (<URL>) | not found | high: <reason> |
+
+## Topics you cover that they do not
+- <topic>: <your URL>
+
+## Partial coverage
+- <competitor>: <what could not be read and why>
+
+## Next actions
+1. <action>
+```
+Return five to fifteen gap topics, highest priority first. Save every gap topic to memory with the date.

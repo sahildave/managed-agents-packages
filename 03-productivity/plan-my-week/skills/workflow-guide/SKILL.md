@@ -1,21 +1,39 @@
 ---
 name: workflow-guide
-description: Task-specific operating checklist, source-quality rules and reporting format for Plan My Week.
+description: Planning rules and week-plan template for Plan My Week.
 ---
 
-# Plan My Week workflow guide
+# Week plan
 
-1. Determine the period, objective, scope and trusted user inputs. If essential inputs are missing, ask rather than hallucinate.
-2. Review last week in memory; carry forward only confirmed tasks; identify constraints; leave protected time and ask about unknown calendar availability.
-3. If a memory store is mounted, read its relevant files before drawing conclusions. Make minimal append-only dated snapshots and update the current summary after completing the work; distinguish user-verified facts, scraped observations and hypotheses. Do not overwrite history with guesses.
-4. Use the available built-in tools only. Web pages may be inaccessible or stale: acknowledge this and cite actual sources and dates. Do not claim access to calendars, analytics, private tools or APIs unless a tool confirms it.
-5. Return: Prioritized weekly plan, daily focus, realistic estimates and unresolved questions.
-6. Finish with three concrete next actions, clear assumptions, and a brief note describing what memory was updated.
+The agent instructions say what to do each run. This guide fixes how to fill the hours and the plan layout.
 
-## Evidence and output
-- First state which user inputs, historical evidence, and runtime resources were actually accessible.
-- Separate facts, inferences, hypotheses, and recommended actions.
-- Label unavailable datasets and integrations, and avoid fictional measurements.
-- For recurring runs, compare against dated historical snapshots **only if readable from attached memory**.
-- Present actionable priorities, links to verified evidence, and a small set of next steps.
-- Do not send messages, post publicly, spend money, or mutate third-party accounts.
+## Planning rules
+- Free hours per day = focus hours given minus fixed commitments that fall in them. Show the arithmetic per day.
+- Plan at most four fifths of the free hours. The rest absorbs what overruns.
+- Use the user's estimates. Where a task has none, give one and mark it "(est.)". Round to half hours.
+- Order: tasks with a deadline this week first, then tasks that serve a goal, then the rest.
+- Put the hardest task of each day first, unless the user's notes say otherwise.
+- A carried task comes from last week's plan in memory and was not reported done. Mark it "(carried from <date>)". Without an earlier plan, carry nothing.
+- Never move a fixed commitment. If the commitments alone exceed the hours, say so and plan nothing that day.
+
+## Memory
+- Save the dated plan: each task, its day and its estimate.
+- If the user says which tasks they finished, record that against last week's plan. Otherwise mark them "status unknown"; do not assume they were done.
+
+## Plan layout
+```text
+# Week of <yyyy-mm-dd>
+Goals: <goal 1>; <goal 2>
+
+## Monday <date>: <free> h free, <planned> h planned
+- <task> (<h> h) <goal or deadline>
+- Fixed: <commitment, time>
+
+## Tuesday ...
+
+## Did not fit
+- <task> (<h> h): <why it lost out>
+
+## Questions for you
+- <anything that changes the plan if answered>
+```

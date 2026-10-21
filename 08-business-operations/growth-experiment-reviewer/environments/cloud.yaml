@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
 name: growth-experiment-reviewer-cloud
-description: Default minimal cloud sandbox for Growth Experiment Reviewer. No third-party
-  credentials or extra packages.
+description: Cloud sandbox with no network access. The agent works only from what you paste; the shell, web search and web fetch are disabled in the agent, and nothing secret is stored here.
 config:
   type: cloud
   networking:
