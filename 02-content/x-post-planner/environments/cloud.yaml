@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
-name: x-post-planner-cloud
-description: Default minimal cloud sandbox for X Post Planner. No third-party credentials
-  or extra packages.
-config:
-  type: cloud
-  networking:
-    type: limited
-    allow_package_managers: false

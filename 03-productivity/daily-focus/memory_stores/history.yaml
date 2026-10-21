@@ -1,4 +1,0 @@
-# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
-name: Daily Focus Planner memory
-description: Private observations, dated checkpoints, preferences, and decisions for
-  Daily Focus Planner. Keep snapshots labeled with source and date.

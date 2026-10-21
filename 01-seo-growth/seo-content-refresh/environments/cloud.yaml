@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
 name: seo-content-refresh-cloud
-description: Cloud sandbox with open web access for web search and fetch. The shell is disabled in the agent, and nothing secret is stored here.
+description: Cloud sandbox with open web access and a shell, so the agent can run curl against your sitemap and outbound links. Nothing secret is stored here.
 config:
   type: cloud
   networking:

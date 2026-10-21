@@ -1,6 +1,6 @@
 # Plan My Week — Claude Managed Agent native package
 
-Paste your goals, tasks and fixed commitments for the week, and get back a day-by-day plan that fits the focus hours you said you have, with a fifth of them left unplanned for what goes wrong. Tasks that do not fit are listed, not squeezed in. With memory attached, it reads last week's plan and carries forward what you did not finish. It never touches your calendar.
+Paste your goals, tasks and fixed commitments for the week, and get back a day-by-day plan that fits the focus hours you said you have, with a fifth of them left unplanned for what goes wrong. Each day opens with one focus line: the task that matters most if nothing else gets done. Tasks that do not fit are listed, not squeezed in. With memory attached, it reads last week's plan and carries forward what you did not finish. It never touches your calendar.
 
 ## Resources
 - `agents/plan-my-week.md`: the agent's instructions, tools and multiagent settings.

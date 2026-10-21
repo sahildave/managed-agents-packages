@@ -13,6 +13,7 @@ The agent instructions say what to do each run. This guide fixes how to fill the
 - Use the user's estimates. Where a task has none, give one and mark it "(est.)". Round to half hours.
 - Order: tasks with a deadline this week first, then tasks that serve a goal, then the rest.
 - Put the hardest task of each day first, unless the user's notes say otherwise.
+- Give each day one focus line: the task that matters most that day if nothing else gets done, and the goal or deadline it serves. On a day with nothing planned, the focus line says so.
 - A carried task comes from last week's plan in memory and was not reported done. Mark it "(carried from <date>)". Without an earlier plan, carry nothing.
 - Never move a fixed commitment. If the commitments alone exceed the hours, say so and plan nothing that day.
 
@@ -26,6 +27,7 @@ The agent instructions say what to do each run. This guide fixes how to fill the
 Goals: <goal 1>; <goal 2>
 
 ## Monday <date>: <free> h free, <planned> h planned
+Focus: <the one task that matters most today>, for <goal or deadline>
 - <task> (<h> h) <goal or deadline>
 - Fixed: <commitment, time>
 

@@ -1,4 +1,0 @@
-# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
-name: Founder Weekly Brief memory
-description: Private observations, dated checkpoints, preferences, and decisions for
-  Founder Weekly Brief. Keep snapshots labeled with source and date.

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Growth Experiment Picker memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Growth Experiment Picker. Keep snapshots labeled with source and date.

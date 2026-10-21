@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
-name: content-repurposer-cloud
-description: Cloud sandbox with no outside network access. The agent works only from the text you paste; the shell, web search and web fetch are disabled in the agent.
-config:
-  type: cloud
-  networking:
-    type: limited
-    allow_package_managers: false

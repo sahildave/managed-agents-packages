@@ -1,11 +1,11 @@
 ---
 name: workflow-guide
-description: Recurrence rules, cost arithmetic and report template for Subscription Expense Reviewer.
+description: Recurrence rules, cost arithmetic, pricing and renewal rules and report template for Subscription Expense Reviewer.
 ---
 
 # Subscription expense review
 
-The agent instructions say what to do each run. This guide fixes when a charge counts as recurring, how to total costs, what to keep in memory and the report layout.
+The agent instructions say what to do each run. This guide fixes when a charge counts as recurring, how to total costs, how to read pricing pages and renewal dates, what to keep in memory and the report layout.
 
 ## Reading the paste
 - Accept any row shape that gives a date, a merchant and an amount. Note the currency on each row; if it is missing, ask rather than assume.
@@ -28,19 +28,39 @@ The agent instructions say what to do each run. This guide fixes when a charge c
 - Total per currency. Never convert currencies; you have no exchange rate.
 - Show the rows each total came from, so the user can check the sum.
 
+## Pricing pages
+- Fetch the vendor's own public pricing page for each recurring tool. Cite the URL and fetch date next to every price you quote.
+- Name the plan only when the charged amount matches a listed price; otherwise say "plan not matched".
+- A cheaper fit is a lower plan or an annual discount shown on that page. You cannot see the user's usage or seats, so label each one "check it covers what you use".
+- If the page is blocked, behind a login or shows no prices, say so and quote nothing.
+- Send nothing from the paste to any site. Fetch public pages only.
+
+## Renewals
+- A renewal date comes from the user's "Renewal dates" input or from memory. For a monthly charge, the next date is one month after the last row. Never guess a yearly renewal date.
+- List every renewal in the next 45 days from today, soonest first.
+- Add the cancellation-notice window only where the vendor's own page states one, with its URL.
+
 ## Memory
 - `profile.md`: budget, still-in-use list and the date they changed.
-- `snapshots/<yyyy-mm-dd>.md`: merchant, amount, currency, interval, last seen date. Nothing else from the statement.
+- `snapshots/<yyyy-mm-dd>.md`: merchant, amount, currency, interval, last seen date, next renewal date and the user's keep or cancel decision if given. Nothing else from the statement.
 
 ## Report layout
 ```text
 # Recurring charges, <first row date> to <last row date>
 
 ## Recurring
-| Merchant | Interval | Latest amount | Monthly | Yearly | Flag |
-| --- | --- | --- | --- | --- | --- |
+| Merchant | Interval | Latest amount | Monthly | Yearly | Next renewal | Flag |
+| --- | --- | --- | --- | --- | --- | --- |
 
 Total: <monthly> a month, <yearly> a year (<currency>). Budget: <budget or "none given">.
+
+## Renews in the next 45 days
+- <date>: <merchant>, <amount>. Notice window: <from vendor page with URL, or "not published">
+
+## Current prices
+- <merchant>: <plan matched or "plan not matched">, <price> (<URL>, fetched <date>). Cheaper fit: <plan or discount, or none>. Check it covers what you use.
+
+If you made the changes below: <estimated monthly saving per currency>, an estimate.
 
 ## Check or cancel yourself
 1. <merchant>: <flag and evidence>. You cancel this in the merchant's own billing settings.

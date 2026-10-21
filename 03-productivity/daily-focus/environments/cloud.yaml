@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
-name: daily-focus-cloud
-description: Default minimal cloud sandbox for Daily Focus Planner. No third-party
-  credentials or extra packages.
-config:
-  type: cloud
-  networking:
-    type: limited
-    allow_package_managers: false

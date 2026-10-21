@@ -1,4 +1,4 @@
 # yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
-name: SEO Content Refresh Planner memory
+name: SEO Content Refresh memory
 description: Private observations, dated checkpoints, preferences, and decisions for
-  SEO Content Refresh Planner. Keep snapshots labeled with source and date.
+  SEO Content Refresh. Keep snapshots labeled with source and date.

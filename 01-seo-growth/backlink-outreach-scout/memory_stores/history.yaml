@@ -1,4 +1,0 @@
-# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
-name: Backlink Outreach Scout memory
-description: Private observations, dated checkpoints, preferences, and decisions for
-  Backlink Outreach Scout. Keep snapshots labeled with source and date.
