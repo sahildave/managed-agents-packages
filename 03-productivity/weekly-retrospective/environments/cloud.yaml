@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
+name: weekly-retrospective-cloud
+description: Cloud sandbox with no outbound network. The shell, web search and web fetch are disabled in the agent, which works only from your inputs and memory.
+config:
+  type: cloud
+  networking:
+    type: limited
+    allow_package_managers: false

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
+name: subscription-expense-reviewer-cloud
+description: Cloud sandbox with open web access for web fetch of vendors' public pricing pages. The shell and web search are disabled in the agent, and nothing secret is stored here.
+config:
+  type: cloud
+  networking:
+    type: unrestricted

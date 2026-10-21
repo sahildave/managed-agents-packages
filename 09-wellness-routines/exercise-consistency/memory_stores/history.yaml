@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/memory_store.json
+name: Exercise Consistency Planner memory
+description: Private observations, dated checkpoints, preferences, and decisions for
+  Exercise Consistency Planner. Keep snapshots labeled with source and date.

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://platform.claude.com/schemas/ant/beta/environment.json
+name: competitor-content-gap-cloud
+description: Cloud sandbox with open web access and a shell, so the agent can run curl against public sitemaps. Nothing secret is stored here.
+config:
+  type: cloud
+  networking:
+    type: unrestricted
